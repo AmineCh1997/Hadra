@@ -46,6 +46,11 @@ class SignupActivity : AppCompatActivity() {
             activity_signup_et_password.requestFocus()
             return
         }
+        if (activity_signup_et_password.text.toString() != activity_signup_et_password2.text.toString() ) {
+            activity_signup_et_password2.error = "Passwords do not match ! "
+            activity_signup_et_password2.requestFocus()
+            return
+        }
 
         auth.createUserWithEmailAndPassword(activity_signup_et_email.text.toString(), activity_signup_et_password.text.toString())
             .addOnCompleteListener(this) { task ->

@@ -11,6 +11,12 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_signup.*
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import androidx.core.app.ComponentActivity.ExtraData
+import androidx.core.content.ContextCompat.getSystemService
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+
+
 
 class LoginActivity : AppCompatActivity() {
 
@@ -26,7 +32,7 @@ class LoginActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
 
         //Going to signup Activity and killing the login Activity
-        activity_login_btn_toSignup.setOnClickListener{
+        activity_login_tv_toSignup.setOnClickListener{
             startActivity(Intent(this,SignupActivity::class.java))
             finish()
         }
@@ -34,6 +40,7 @@ class LoginActivity : AppCompatActivity() {
         activity_login_btn_login.setOnClickListener{
             login()
         }
+
 
 
     }
