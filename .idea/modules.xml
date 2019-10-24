@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Hadra.iml" filepath="$PROJECT_DIR$/Hadra.iml" />
+      <module fileurl="file://$PROJECT_DIR$/HadraAndroid-Hadra.iml" filepath="$PROJECT_DIR$/HadraAndroid-Hadra.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/HadraAndroid-app.iml" filepath="$PROJECT_DIR$/app/HadraAndroid-app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
