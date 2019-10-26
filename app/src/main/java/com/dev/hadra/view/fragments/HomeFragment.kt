@@ -44,7 +44,7 @@ class HomeFragment : Fragment() {
         return root
     }
 
-    private fun generateData(): ArrayList<Category> {
+    private fun generateData() {
 
         var categoriesResult = ArrayList<Category>()
 
@@ -53,8 +53,9 @@ class HomeFragment : Fragment() {
             .addOnSuccessListener { result ->
                 for (document in result) {
                     Log.e("success", "${document.id} => ${document.data.get("name")}")
-                    var cat: Category = Category(document.data.get("name") as String)
+                    var cat: Category = Category(document.data.get("name") as String,document.data.get("color") as String )
                     categoriesResult.add(cat)
+
                 }
                 var adapter = CategoryAdapter(categoriesResult)
                 val layoutManager = LinearLayoutManager(activity?.applicationContext)
@@ -73,8 +74,6 @@ class HomeFragment : Fragment() {
             var cat: Category = Category("Poilitics")
             categoriesResult.add(cat)
         }*/
-
-        return categoriesResult
     }
 
 }
