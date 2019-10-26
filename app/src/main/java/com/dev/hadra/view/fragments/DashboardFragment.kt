@@ -1,4 +1,4 @@
-package com.dev.hadra.ui.dashboard
+package com.dev.hadra.view.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.dev.hadra.R
+import com.dev.hadra.viewmodel.DashboardViewModel
 
 class DashboardFragment : Fragment() {
 

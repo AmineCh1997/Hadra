@@ -1,4 +1,4 @@
-package com.dev.hadra.view
+package com.dev.hadra.view.activities
 
 import android.widget.Toast
 import android.util.Log
@@ -28,7 +28,7 @@ class LoginActivity : AppCompatActivity() {
 
         //Going to signup Activity and killing the login Activity
         activity_login_tv_toSignup.setOnClickListener{
-            startActivity(Intent(this,SignupActivity::class.java))
+            startActivity(Intent(this, SignupActivity::class.java))
             finish()
         }
 

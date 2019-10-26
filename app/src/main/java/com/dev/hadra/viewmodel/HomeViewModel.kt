@@ -1,4 +1,4 @@
-package com.dev.hadra.ui.home
+package com.dev.hadra.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

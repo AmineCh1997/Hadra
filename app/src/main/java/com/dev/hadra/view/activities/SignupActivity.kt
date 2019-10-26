@@ -1,4 +1,4 @@
-package com.dev.hadra.view
+package com.dev.hadra.view.activities
 
 import android.util.Log
 import android.content.Intent
@@ -56,7 +56,7 @@ class SignupActivity : AppCompatActivity() {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
-                    startActivity(Intent(this,LoginActivity::class.java))
+                    startActivity(Intent(this, LoginActivity::class.java))
                     finish()
 
                 } else {
