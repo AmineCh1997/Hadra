@@ -7,11 +7,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_signup.*
+import kotlinx.android.synthetic.main.fragment_profile.*
 
 class SignupActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
+    private lateinit var db: FirebaseFirestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,7 +22,7 @@ class SignupActivity : AppCompatActivity() {
 
         // Initialize Firebase Auth
         auth = FirebaseAuth.getInstance()
-
+        db = FirebaseFirestore.getInstance()
         activity_signup_btn_signup.setOnClickListener{
             signupUser()
         }
@@ -56,8 +59,20 @@ class SignupActivity : AppCompatActivity() {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
-                    startActivity(Intent(this, LoginActivity::class.java))
-                    finish()
+                    val user = hashMapOf(
+                        "username" to activity_signup_et_username.text.toString(),
+                        "email" to auth.currentUser!!.email,
+                        "image" to ""
+                    )
+                    db.collection("User")
+                        .document(auth.currentUser!!.email!!)
+                        .set(user).addOnSuccessListener {
+                            startActivity(Intent(this, LoginActivity::class.java))
+                            finish()
+                        }
+                        .addOnFailureListener {
+                            Log.wtf("Profile frag", "Error writing document", it)
+                        }
 
                 } else {
                     // If sign in fails, display a message to the user.

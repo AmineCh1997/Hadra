@@ -40,7 +40,7 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
-    public fun login(){
+    fun login(){
 
         if (activity_login_et_email.text.toString().isEmpty()) {
             activity_login_et_email.error = "Email is missing !"
