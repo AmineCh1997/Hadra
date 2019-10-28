@@ -22,6 +22,8 @@ class TopicsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_topics)
+
+
         var cat = getIntent().getSerializableExtra("Category") as? Category
         activity_topics_tv_id.setText(cat?.id)
         activity_topics_tv_name.setText(cat?.name)
