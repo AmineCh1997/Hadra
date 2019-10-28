@@ -53,7 +53,9 @@ class HomeFragment : Fragment() {
             .addOnSuccessListener { result ->
                 for (document in result) {
                     Log.e("success", "${document.id} => ${document.data.get("name")}")
-                    var cat: Category = Category(document.data.get("name") as String,document.data.get("color") as String )
+                    var cat: Category = Category(document.id as String,
+                        document.data.get("name") as String,document.data.get("color") as String )
+
                     categoriesResult.add(cat)
 
                 }

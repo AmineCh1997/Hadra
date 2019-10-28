@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="200dp">
+
+
+    <ImageView
+        android:id="@+id/item_comment_iv_user"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="10dp"
+        app:srcCompat="@mipmap/ic_launcher_round" />
+
+    <TextView
+        android:id="@+id/item_comment_tv_username"
+        style="bold"
+        android:layout_width="208dp"
+        android:layout_height="25dp"
+        android:layout_marginLeft="75dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="casual"
+        android:text="AmineCh1997"
+        android:textSize="15dp" />
+
+
+    <TextView
+        android:id="@+id/item_comment_tv_content"
+        android:layout_width="246dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="60dp"
+        android:fontFamily="casual"
+        android:text="To be honnest Saifeddine Makhlouf is the best , im sad that Nabil ma9rouna is number two ">
+
+    </TextView>
+
+
+    <TextView
+        android:id="@+id/item_comment_tv_created_at"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="75dp"
+        android:layout_marginTop="28dp"
+
+        android:fontFamily="casual"
+        android:text="01-01-2019 11:56"
+        android:textSize="10dp" />
+
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="75dp"
+        android:layout_marginTop="59dp"
+        android:src="@drawable/ic_comment_black_24dp" />
+
+    <ImageView
+        android:id="@+id/item_comment_iv_delete"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_alignBottom="@+id/item_comment_tv_created_at"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="14dp"
+        android:src="@drawable/ic_clear_black_24dp" />
+
+</RelativeLayout>
