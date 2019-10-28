@@ -7,6 +7,8 @@
     android:orientation="vertical"
     android:layout_marginBottom="30dp">
 
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -63,13 +65,19 @@
             android:id="@+id/item_topic_tv_topic_subject"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
             android:fontFamily="casual"
             android:text="#Election"
             android:textColor="#FFFFFF"
             tools:layout_editor_absoluteX="170dp"
             tools:layout_editor_absoluteY="17dp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        </ImageView>
 
 
     </LinearLayout>
@@ -133,10 +141,12 @@
 
     </LinearLayout>
 
-
-
-
-
-
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="?android:attr/listDivider"
+        android:backgroundTint="#FFFFFF"
+        android:layout_marginBottom="5dp"/>
 
 </LinearLayout>
