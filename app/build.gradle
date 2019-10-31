@@ -58,4 +58,5 @@ dependencies {
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
     implementation 'com.google.android.material:material:1.0.0'
 
+
 }
