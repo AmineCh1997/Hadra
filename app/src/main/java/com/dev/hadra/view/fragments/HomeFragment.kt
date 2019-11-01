@@ -1,26 +1,31 @@
 package com.dev.hadra.view.fragments
 
+import android.nfc.Tag
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dev.hadra.R
 import com.dev.hadra.adapter.CategoryAdapter
+import com.dev.hadra.di.InjectorUtils
 import com.dev.hadra.model.Category
 import com.dev.hadra.viewmodel.HomeViewModel
+import com.dev.hadra.viewmodel.UserViewModel
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlin.collections.ArrayList
 
 class HomeFragment : Fragment() {
 
     private var recyclerView: RecyclerView? = null
-
-
+    private lateinit var userViewModel: UserViewModel
+    private val TAG = "Home Fragment"
     private lateinit var homeViewModel: HomeViewModel
 
     // [START get_firestore_instance]
@@ -44,6 +49,44 @@ class HomeFragment : Fragment() {
         return root
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val factory = InjectorUtils.provideUserViewModelFactory()
+        userViewModel = ViewModelProviders.of(activity!!,factory).get(UserViewModel::class.java)
+
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+
+
+    }
+
+    private fun UserRequests(){
+        var id:String = ""
+        userViewModel.getAllUsers().observe(this, Observer {
+            it.forEach {
+                Log.e("HomeFragment",it.toString())
+            }
+
+        })
+        userViewModel.login("selim","123456").observe(this, Observer {
+            Log.e(TAG,it.token)
+            Log.e(TAG,it.id)
+            id=it.id!!
+            /* userViewModel.update("selim","123456",id).observe(this, Observer {
+                 Log.e(TAG,it.username)
+             })*/
+            userViewModel.getUserById(id).observe(this, Observer {
+                Log.e(TAG,it.toString())
+            })
+        })
+
+        userViewModel.register("testandroid","hadra@hadra.tn","123456").observe(this, Observer {
+            Log.e(TAG,it.username)
+        })
+    }
     private fun generateData() {
 
         var categoriesResult = ArrayList<Category>()

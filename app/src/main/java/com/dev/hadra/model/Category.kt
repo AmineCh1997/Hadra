@@ -8,7 +8,7 @@ class Category : Serializable{
     var name: String = ""
     var color: String = ""
 
-    constructor() {}
+    
 
     constructor(id: String,name: String ,color: String) {
         this.id = id
