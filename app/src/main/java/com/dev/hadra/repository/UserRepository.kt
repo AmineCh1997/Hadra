@@ -10,6 +10,17 @@ import retrofit2.Response
 
 class UserRepository private constructor(private val apiService: APIService){
     val TAG = "USER_REPOSITORY"
+
+    companion object {
+        @Volatile private var instnace : UserRepository? = null
+        fun getInstance(apiService: APIService) : UserRepository{
+            instnace ?: synchronized(lock = this){
+                instnace ?: UserRepository(apiService).also { instnace = it }
+            }
+            return instnace!!
+        }
+    }
+
     fun getAllUsers() : LiveData<List<User>>{
         val allUsers = MutableLiveData<List<User>>()
         apiService.allUsers.enqueue(object : Callback<List<User>> {
@@ -78,13 +89,5 @@ class UserRepository private constructor(private val apiService: APIService){
         })
         return user
     }
-    companion object {
-        @Volatile private var instnace : UserRepository? = null
-        fun getInstance(apiService: APIService) : UserRepository{
-            instnace ?: synchronized(lock = this){
-                    instnace ?: UserRepository(apiService).also { instnace = it }
-            }
-            return instnace!!
-        }
-    }
+
 }

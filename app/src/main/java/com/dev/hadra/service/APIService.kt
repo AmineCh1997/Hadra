@@ -1,5 +1,7 @@
 package com.dev.hadra.repository
 
+import com.dev.hadra.model.Category
+import com.dev.hadra.model.Topic
 import com.dev.hadra.model.User
 
 import retrofit2.Call
@@ -24,5 +26,20 @@ interface APIService {
 
     @GET("user/{id}")
     fun getUserById(@Path("id")id:String): Call<User>
+
+    @get:GET("category/")
+    val allCategories : Call<List<Category>>
+
+    @GET("category/{id}")
+    fun categoryGetById(@Path("id")id:String): Call<Category>
+
+    @GET("topic/{id}")
+    fun topicGetById(@Path("id")id:String): Call<Topic>
+
+    @POST("topic/add")
+    @FormUrlEncoded
+    fun topicAdd(@Field("subject")subject:String,@Field("content")content:String,@Field("Category")category: Category) : Call<Topic>
+
+
 
 }

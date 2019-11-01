@@ -1,22 +1,22 @@
 package com.dev.hadra.model
 
 import java.io.Serializable
+import com.google.gson.annotations.Expose
+import com.google.gson.annotations.SerializedName
+
+
 
 class Topic : Serializable {
-    var id : String = ""
-    var subject : String = ""
-    var content : String = ""
-    var created_at : String = ""
 
-    constructor(){}
-
-    constructor(id : String , hashtag : String ,description : String , created_at : String,watchs : Int){
-        this.id = id
-        this.subject = hashtag
-        this.content = description
-        this.created_at = created_at
-
-    }
+    @SerializedName("subject")
+    @Expose
+    val subject: String? = null
+    @SerializedName("content")
+    @Expose
+    val content: String? = null
+    @SerializedName("category")
+    @Expose
+    val category: Category? = null
 
 
 }

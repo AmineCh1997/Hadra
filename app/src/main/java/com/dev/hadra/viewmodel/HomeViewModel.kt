@@ -1,13 +1,14 @@
 package com.dev.hadra.viewmodel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+
 import androidx.lifecycle.ViewModel
+import com.dev.hadra.model.Category
+import com.dev.hadra.repository.CategoryRepository
+import com.dev.hadra.repository.TopicRepository
 
-class HomeViewModel : ViewModel() {
+class HomeViewModel(private val categoryRepository: CategoryRepository,private val topicRepository: TopicRepository) : ViewModel() {
 
-    /*private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
-    }
-    val text: LiveData<String> = _text*/
+    fun categoryAll() = categoryRepository.categoryAll()
+    fun categoryGetById(id:String) = categoryRepository.categoryGetById(id)
+    fun topicAdd(subject:String,content:String,category:Category) = topicRepository.topicAdd(subject, content, category)
 }

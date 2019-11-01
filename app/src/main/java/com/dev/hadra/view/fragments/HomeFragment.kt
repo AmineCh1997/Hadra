@@ -41,7 +41,7 @@ class HomeFragment : Fragment() {
             ViewModelProviders.of(this).get(HomeViewModel::class.java)*/
         val root = inflater.inflate(R.layout.fragment_home, container, false)
         recyclerView = root.findViewById(R.id.fragment_home_recycler_view)
-        generateData()
+       // generateData()
        /* val textView: TextView = root.findViewById(R.id.text_home)
         homeViewModel.text.observe(this, Observer {
             textView.text = it
@@ -51,16 +51,29 @@ class HomeFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val factory = InjectorUtils.provideUserViewModelFactory()
-        userViewModel = ViewModelProviders.of(activity!!,factory).get(UserViewModel::class.java)
+        val userFactory = InjectorUtils.provideUserViewModelFactory()
+        userViewModel = ViewModelProviders.of(activity!!,userFactory).get(UserViewModel::class.java)
+        val homeFactory = InjectorUtils.provideUHomeViewModelFactory()
+        homeViewModel = ViewModelProviders.of(activity!!,homeFactory).get(HomeViewModel::class.java)
 
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+            homeViewModel.categoryAll().observe(this, Observer {
+                var id:String=""
+                it.forEach {
+                    Log.e(TAG,it.name)
+                    id=it.id!!
+                }
+                homeViewModel.categoryGetById(id).observe(this, Observer {
+                    Log.e(TAG,it.color)
+                    homeViewModel.topicAdd("topic subject","topic content",it).observe(this, Observer {
+                        Log.e(TAG,it.category.name)
+                    })
+                })
 
-
-
+            })
     }
 
     private fun UserRequests(){
@@ -87,7 +100,7 @@ class HomeFragment : Fragment() {
             Log.e(TAG,it.username)
         })
     }
-    private fun generateData() {
+   /* private fun generateData() {
 
         var categoriesResult = ArrayList<Category>()
 
@@ -119,6 +132,6 @@ class HomeFragment : Fragment() {
             var cat: Category = Category("Poilitics")
             categoriesResult.add(cat)
         }*/
-    }
+    }*/
 
 }
