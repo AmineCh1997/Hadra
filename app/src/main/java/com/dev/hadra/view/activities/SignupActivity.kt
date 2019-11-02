@@ -23,7 +23,6 @@ class SignupActivity : AppCompatActivity() {
         setContentView(R.layout.activity_signup)
 
         // Initialize Firebase Auth
-
         auth = FirebaseAuth.getInstance()
         mProgressBar = ProgressDialog(this)
 

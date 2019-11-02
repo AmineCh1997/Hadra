@@ -3,6 +3,7 @@ package com.dev.hadra.adapter
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.ColorFilter
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -34,9 +35,22 @@ class TopicAdapter (private var items: ArrayList<Topic>) : RecyclerView.Adapter<
         var context = holder?.itemView?.context
 
         //
+        holder.topic_username?.setText(topic.user?.username)
+        holder.topic_createdat?.setText(topic.created_at.toString())
+        holder.topic_subject?.setText(topic.subject)
+        holder.topic_content?.setText(topic.content)
+        //holder.topic_watchs?.setText(topic.content)
+
+
 
         //Changing Item Bakcground color
-        holder?.lnr_layout?.setBackgroundColor(Color.parseColor("#FF4DB6AC"))
+        Log.e("TEST","${topic.cat?.color}")
+        holder?.lnr_layout?.setBackgroundColor(Color.parseColor("#f0f0f0"))
+        holder.topic_username?.setTextColor(Color.parseColor(topic.cat?.color.toString()))
+        holder.topic_createdat?.setTextColor(Color.parseColor(topic.cat?.color.toString()))
+        holder.topic_subject?.setTextColor(Color.parseColor(topic.cat?.color.toString()))
+        holder.topic_content?.setTextColor(Color.parseColor(topic.cat?.color.toString()))
+        holder.topic_watchs?.setTextColor(Color.parseColor(topic.cat?.color.toString()))
 
 
 

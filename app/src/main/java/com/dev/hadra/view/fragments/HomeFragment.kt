@@ -32,6 +32,7 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         /*homeViewModel =
             ViewModelProviders.of(this).get(HomeViewModel::class.java)*/
         val root = inflater.inflate(R.layout.fragment_home, container, false)
@@ -55,9 +56,7 @@ class HomeFragment : Fragment() {
                     Log.e("success", "${document.id} => ${document.data.get("name")}")
                     var cat: Category = Category(document.id as String,
                         document.data.get("name") as String,document.data.get("color") as String )
-
-                    categoriesResult.add(cat)
-
+                        categoriesResult.add(cat)
                 }
                 var adapter = CategoryAdapter(categoriesResult)
                 val layoutManager = LinearLayoutManager(activity?.applicationContext)
@@ -65,8 +64,7 @@ class HomeFragment : Fragment() {
                 recyclerView?.itemAnimator = DefaultItemAnimator()
                 recyclerView?.adapter = adapter
                 adapter.notifyDataSetChanged()
-            }
-            .addOnFailureListener { exception ->
+            }.addOnFailureListener { exception ->
                 Log.e("failure", "Error getting documents: ", exception)
             }
         // [END get_all_users]

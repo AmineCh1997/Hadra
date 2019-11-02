@@ -35,6 +35,7 @@ class CommentsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_comments)
 
 
+        getSupportActionBar()?.hide()
         recyclerView = findViewById(R.id.activity_comments_recycler_view) as RecyclerView
 
         activity_comments_et_comment_content.addTextChangedListener {
