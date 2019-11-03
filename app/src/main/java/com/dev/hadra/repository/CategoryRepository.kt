@@ -1,5 +1,6 @@
 package com.dev.hadra.repository
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.dev.hadra.model.Category
@@ -24,7 +25,7 @@ class CategoryRepository private constructor( private val apiService: APIService
         val allCategories = MutableLiveData<List<Category>>()
         apiService.allCategories.enqueue(object : Callback<List<Category>>{
             override fun onFailure(call: Call<List<Category>>, t: Throwable) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                Log.e(TAG,t.message)
             }
 
             override fun onResponse(

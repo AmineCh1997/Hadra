@@ -1,6 +1,5 @@
 package com.dev.hadra.view.fragments
 
-import android.nfc.Tag
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,17 +8,14 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.DefaultItemAnimator
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dev.hadra.R
-import com.dev.hadra.adapter.CategoryAdapter
 import com.dev.hadra.di.InjectorUtils
-import com.dev.hadra.model.Category
 import com.dev.hadra.viewmodel.HomeViewModel
 import com.dev.hadra.viewmodel.UserViewModel
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlin.collections.ArrayList
+import com.google.gson.Gson
+
 
 class HomeFragment : Fragment() {
 
@@ -60,20 +56,31 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-            homeViewModel.categoryAll().observe(this, Observer {
+           /* homeViewModel.categoryAll().observe(this, Observer {
                 var id:String=""
                 it.forEach {
                     Log.e(TAG,it.name)
                     id=it.id!!
                 }
                 homeViewModel.categoryGetById(id).observe(this, Observer {
-                    Log.e(TAG,it.color)
-                    homeViewModel.topicAdd("topic subject","topic content",it).observe(this, Observer {
-                        Log.e(TAG,it.category.name)
+                    Log.e(TAG,it.id)
+
+                    homeViewModel.topicAdd("topic subject","topic content",it.id!!).observe(this, Observer {
+                        Log.e(TAG,it.category!!.name)
+                        val gson = Gson()
+                        Log.e(TAG,gson.toJson(it).toString())
                     })
                 })
 
             })
+            homeViewModel.topicGetById("5dbe2d8ee906a3738c3a833c").observe(this, Observer {
+                val gson = Gson()
+                Log.e(TAG,gson.toJson(it).toString())
+            })*/
+        homeViewModel.commentAdd("comment from android",null
+            ,"5dbee02b803e3e7f845a9e61","5db5d8d4f8c61d42e4ca57af").observe(this, Observer {
+            Log.e(TAG,it.content)
+        })
     }
 
     private fun UserRequests(){

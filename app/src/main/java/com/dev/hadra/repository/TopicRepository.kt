@@ -1,5 +1,6 @@
 package com.dev.hadra.repository
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.dev.hadra.model.Category
@@ -9,7 +10,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class TopicRepository(private var apiService: APIService) {
-    val TAG="CategoryRepo"
+    val TAG="TopicRepo"
 
     companion object {
         @Volatile private var instnace : TopicRepository? = null
@@ -21,11 +22,26 @@ class TopicRepository(private var apiService: APIService) {
         }
     }
 
-    fun topicAdd(subject:String,content:String,category:Category) : LiveData<Topic> {
+    fun topicAdd(subject:String,content:String,category:String) : LiveData<Topic> {
         val topic = MutableLiveData<Topic>()
         apiService.topicAdd(subject, content, category).enqueue(object : Callback<Topic>{
             override fun onFailure(call: Call<Topic>, t: Throwable) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                Log.e(TAG,t.message)
+            }
+
+            override fun onResponse(call: Call<Topic>, response: Response<Topic>) {
+                topic.value = response.body()
+            }
+
+        })
+        return topic
+    }
+
+    fun topicGetById(id:String) : LiveData<Topic> {
+        val topic = MutableLiveData<Topic>()
+        apiService.topicGetById(id).enqueue(object : Callback<Topic>{
+            override fun onFailure(call: Call<Topic>, t: Throwable) {
+                Log.e(TAG,t.message)
             }
 
             override fun onResponse(call: Call<Topic>, response: Response<Topic>) {

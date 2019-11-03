@@ -11,9 +11,15 @@ class Topic : Serializable {
     @SerializedName("subject")
     @Expose
     val subject: String? = null
+
     @SerializedName("content")
     @Expose
     val content: String? = null
+
+    @SerializedName("createdAt")
+    @Expose
+    private val createdAt: String? = null
+
     @SerializedName("category")
     @Expose
     val category: Category? = null
