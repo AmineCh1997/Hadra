@@ -32,11 +32,13 @@ class TopicsActivity : AppCompatActivity() {
     private var mProgressBar: ProgressDialog? = null
     val db = FirebaseFirestore.getInstance()
     private lateinit var auth: FirebaseAuth
+    var topicsResult = ArrayList<Topic>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_topics)
+
 
 
         var cat = getIntent().getSerializableExtra("Category") as? Category
@@ -58,14 +60,23 @@ class TopicsActivity : AppCompatActivity() {
         generateData(cat!!.id)
 
 
+        activity_topics_refresh.setOnRefreshListener {
+
+            topicsResult.clear()
+            generateData(cat!!.id)
+            activity_topics_refresh.isRefreshing = false
+
+
+        }
+
         activity_topics_fb.setOnClickListener {
             AlertAddTopic(cat.id)
         }
+
     }
 
     private fun generateData(categorie_id: String) {
 
-        var topicsResult = ArrayList<Topic>()
 
         //Getting the Topic
         db.collection("Topic").get().addOnSuccessListener { result ->
@@ -113,6 +124,8 @@ class TopicsActivity : AppCompatActivity() {
                                     recyclerView?.itemAnimator = DefaultItemAnimator()
                                     recyclerView?.adapter = adapter
                                     adapter.notifyDataSetChanged()
+
+
 
                                 }.addOnFailureListener { exception ->
                                 Log.e("failure", "Error getting documents: ", exception)
@@ -190,6 +203,9 @@ class TopicsActivity : AppCompatActivity() {
                         "Topic Added : " + subject.text.toString(),
                         Toast.LENGTH_SHORT
                     ).show()
+
+                    topicsResult.clear()
+                    generateData(categorie_id)
 
 
                 }.addOnFailureListener {

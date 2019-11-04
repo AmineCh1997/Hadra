@@ -2,12 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/item_topic_linear"
     android:layout_width="match_parent"
-    android:layout_height="150dp"
-    android:orientation="vertical"
+    android:layout_height="wrap_content"
     android:layout_marginBottom="8dp"
-    android:id="@+id/item_topic_linear">
-
+    android:orientation="vertical">
 
 
     <LinearLayout
@@ -47,8 +46,8 @@
 
             <TextView
                 android:id="@+id/item_topic_tv_topic_date"
-                android:layout_width="62dp"
-                android:layout_height="12dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
                 android:fontFamily="casual"
@@ -98,8 +97,6 @@
     </LinearLayout>
 
 
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -121,21 +118,21 @@
             android:id="@+id/item_topic_tv_topic_watchs"
             android:layout_width="wrap_content"
             android:layout_height="25dp"
+            android:layout_marginLeft="2dp"
             android:layout_marginTop="15dp"
             android:fontFamily="casual"
             android:text="33"
             android:textColor="#FFFFFF"
             tools:layout_editor_absoluteX="45dp"
-            tools:layout_editor_absoluteY="113dp"
-            android:layout_marginLeft="2dp"/>
+            tools:layout_editor_absoluteY="113dp" />
 
         <Switch
             android:id="@+id/item_topic_switch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="260dp"
             android:layout_marginTop="10dp"
             android:fontFamily="casual"
-            android:layout_marginLeft="260dp"
             android:text=" "
             android:textColor="#F00606"
             android:visibility="visible"

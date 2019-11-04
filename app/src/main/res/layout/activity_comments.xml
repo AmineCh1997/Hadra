@@ -24,12 +24,21 @@
 
     </LinearLayout>
 
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/activity_comments_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:layout_marginTop="100dp">
+
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/activity_comments_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="500dp"
         android:layout_marginTop="100dp"
         android:scrollbars="vertical"></androidx.recyclerview.widget.RecyclerView>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 
 

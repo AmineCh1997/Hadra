@@ -67,7 +67,6 @@
         android:backgroundTint="#FFFFFF"
         android:text="Log in"
         android:textColor="#2196F3"
-        app:layout_constraintBottom_toTopOf="@+id/activity_login_btn_toSignup"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/activity_login_et_password" />

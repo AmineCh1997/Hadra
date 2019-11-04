@@ -39,7 +39,7 @@
 
     <TextView
         android:id="@+id/item_comment_tv_created_at"
-        android:layout_width="170dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="75dp"
         android:layout_marginTop="28dp"

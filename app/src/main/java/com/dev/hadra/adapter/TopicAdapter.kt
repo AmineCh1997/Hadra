@@ -45,21 +45,18 @@ class TopicAdapter (private var items: ArrayList<Topic>) : RecyclerView.Adapter<
 
         //Changing Item Bakcground color
         Log.e("TEST","${topic.cat?.color}")
-        holder?.lnr_layout?.setBackgroundColor(Color.parseColor("#f0f0f0"))
+        holder?.lnr_layout?.setBackgroundColor(Color.parseColor("#FFFFFF"))
         holder.topic_username?.setTextColor(Color.parseColor(topic.cat?.color.toString()))
         holder.topic_createdat?.setTextColor(Color.parseColor(topic.cat?.color.toString()))
         holder.topic_subject?.setTextColor(Color.parseColor(topic.cat?.color.toString()))
         holder.topic_content?.setTextColor(Color.parseColor(topic.cat?.color.toString()))
         holder.topic_watchs?.setTextColor(Color.parseColor(topic.cat?.color.toString()))
 
-
-
-
         holder?.itemView.setOnClickListener {
             Toast.makeText(context,"Comments section", Toast.LENGTH_LONG ).show()
             val myIntent = Intent(context, CommentsActivity::class.java)
             //Passing Topic ID
-            //myIntent.putExtra("", con)
+            myIntent.putExtra("Topic",topic)
             context.startActivity(myIntent)
 
 
