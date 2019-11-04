@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="150dp"
     android:orientation="vertical"
-    android:layout_marginBottom="30dp">
+    android:layout_marginBottom="8dp"
+    android:id="@+id/item_topic_linear">
 
 
 
@@ -21,7 +22,7 @@
             android:layout_height="50dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
-            app:srcCompat="@mipmap/ic_launcher_round"
+            android:src="@drawable/profile_picture"
             tools:layout_editor_absoluteX="6dp"
             tools:layout_editor_absoluteY="4dp" />
 
@@ -73,28 +74,31 @@
             tools:layout_editor_absoluteX="170dp"
             tools:layout_editor_absoluteY="17dp" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-        </ImageView>
-
 
     </LinearLayout>
 
-
-    <TextView
-        android:id="@+id/item_topic_tv_topic_content"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:fontFamily="casual"
-        android:text="What do you think about the 2019 elections in tunisia ?"
-        android:textColor="#FFFFFF"
-        android:textStyle="bold"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="72dp" />
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/item_topic_tv_topic_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="casual"
+            android:text="What do you think about the 2019 elections in tunisia ?"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="72dp" />
+    </LinearLayout>
+
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -107,7 +111,7 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="15dp"
             app:srcCompat="@android:drawable/ic_menu_view"
             tools:layout_editor_absoluteX="8dp"
             tools:layout_editor_absoluteY="107dp" />
@@ -117,7 +121,7 @@
             android:id="@+id/item_topic_tv_topic_watchs"
             android:layout_width="wrap_content"
             android:layout_height="25dp"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="15dp"
             android:fontFamily="casual"
             android:text="33"
             android:textColor="#FFFFFF"
@@ -130,8 +134,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:layout_weight="1"
             android:fontFamily="casual"
+            android:layout_marginLeft="260dp"
             android:text=" "
             android:textColor="#F00606"
             android:visibility="visible"
@@ -141,12 +145,5 @@
 
     </LinearLayout>
 
-    <View
-        android:id="@+id/divider"
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="?android:attr/listDivider"
-        android:backgroundTint="#FFFFFF"
-        android:layout_marginBottom="5dp"/>
 
 </LinearLayout>

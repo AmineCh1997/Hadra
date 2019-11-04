@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.activities.TopicsActivity"
-    android:id="@+id/activity_topics_relative"
+    android:id="@+id/activity_topics_linear"
     android:orientation="vertical">
 
 
@@ -27,8 +27,54 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/activity_comments_recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="150dp"
+        android:layout_height="500dp"
+        android:layout_marginTop="100dp"
         android:scrollbars="vertical"></androidx.recyclerview.widget.RecyclerView>
 
-</RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:background="#FFFFFF">
+
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="25dp"
+            android:src="@drawable/profile_picture" />
+
+        <EditText
+            android:id="@+id/activity_comments_et_comment_content"
+            android:layout_width="wrap_content"
+            android:layout_height="70dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="15dp"
+            android:ems="10"
+            android:fontFamily="casual"
+            android:gravity="start|bottom"
+            android:hint="Express yourself , Don't be shy "
+            android:inputType="textMultiLine"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/activity_comments_tv_post"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:fontFamily="casual"
+            android:text="Post"
+            android:textColor="#4DB6AC"
+            android:textSize="18sp">
+
+        </TextView>
+
+
+    </LinearLayout>
+
+</LinearLayout>

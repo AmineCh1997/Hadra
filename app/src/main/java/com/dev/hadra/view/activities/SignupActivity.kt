@@ -1,5 +1,6 @@
 package com.dev.hadra.view.activities
 
+import android.app.ProgressDialog
 import android.util.Log
 import android.content.Intent
 import com.dev.hadra.R
@@ -9,12 +10,13 @@ import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_signup.*
-import kotlinx.android.synthetic.main.fragment_profile.*
 
 class SignupActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
-    private lateinit var db: FirebaseFirestore
+    val db = FirebaseFirestore.getInstance()
+    private var mProgressBar: ProgressDialog? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,7 +24,12 @@ class SignupActivity : AppCompatActivity() {
 
         // Initialize Firebase Auth
         auth = FirebaseAuth.getInstance()
-        db = FirebaseFirestore.getInstance()
+        mProgressBar = ProgressDialog(this)
+
+
+
+
+
         activity_signup_btn_signup.setOnClickListener{
             signupUser()
         }
@@ -54,25 +61,37 @@ class SignupActivity : AppCompatActivity() {
             activity_signup_et_password2.requestFocus()
             return
         }
+        mProgressBar!!.setMessage("Registering User...")
+        mProgressBar!!.show()
 
         auth.createUserWithEmailAndPassword(activity_signup_et_email.text.toString(), activity_signup_et_password.text.toString())
             .addOnCompleteListener(this) { task ->
+                mProgressBar!!.hide()
                 if (task.isSuccessful) {
+
+                    val userId = auth!!.currentUser!!.uid
+                    val items = HashMap<String,Any>()
+                    items.put("email",activity_signup_et_email.text.toString())
+                    items.put("username",activity_signup_et_username.text.toString())
+                    db.collection("User").document(userId).set(items).addOnSuccessListener {
+                        Toast.makeText(
+                            applicationContext,
+                            "You have created your account , now GO login !" ,
+                            Toast.LENGTH_SHORT
+                        ).show()
+
+                    }.addOnFailureListener {
+                        Toast.makeText(
+                            applicationContext,
+                            "Sorry an error has occuered , please try again later" ,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+
+
                     // Sign in success, update UI with the signed-in user's information
-                    val user = hashMapOf(
-                        "username" to activity_signup_et_username.text.toString(),
-                        "email" to auth.currentUser!!.email,
-                        "image" to ""
-                    )
-                    db.collection("User")
-                        .document(auth.currentUser!!.email!!)
-                        .set(user).addOnSuccessListener {
-                            startActivity(Intent(this, LoginActivity::class.java))
-                            finish()
-                        }
-                        .addOnFailureListener {
-                            Log.wtf("Profile frag", "Error writing document", it)
-                        }
+                    startActivity(Intent(this, LoginActivity::class.java))
+                    finish()
 
                 } else {
                     // If sign in fails, display a message to the user.

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="200dp"
     android:layout_marginBottom="10dp"
-    android:background="#FF8A65">
+    >
 
 
     <TextView
@@ -55,4 +55,19 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/textView3"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="320dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="134dp"
+        android:src="@drawable/ic_star_border_black_24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </ImageView>
 </androidx.constraintlayout.widget.ConstraintLayout>

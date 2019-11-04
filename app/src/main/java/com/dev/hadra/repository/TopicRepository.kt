@@ -22,9 +22,9 @@ class TopicRepository(private var apiService: APIService) {
         }
     }
 
-    fun topicAdd(subject:String,content:String,category:String) : LiveData<Topic> {
+    fun topicAdd(subject:String,content:String,category:String,user:String) : LiveData<Topic> {
         val topic = MutableLiveData<Topic>()
-        apiService.topicAdd(subject, content, category).enqueue(object : Callback<Topic>{
+        apiService.topicAdd(subject, content, category,user).enqueue(object : Callback<Topic>{
             override fun onFailure(call: Call<Topic>, t: Throwable) {
                 Log.e(TAG,t.message)
             }
@@ -45,6 +45,21 @@ class TopicRepository(private var apiService: APIService) {
             }
 
             override fun onResponse(call: Call<Topic>, response: Response<Topic>) {
+                topic.value = response.body()
+            }
+
+        })
+        return topic
+    }
+
+    fun topicGetByCategory(category: String) : LiveData<List<Topic>> {
+        val topic = MutableLiveData<List<Topic>>()
+        apiService.topicGetByCategory(category).enqueue(object : Callback<List<Topic>>{
+            override fun onFailure(call: Call<List<Topic>>, t: Throwable) {
+                Log.e(TAG,t.message)
+            }
+
+            override fun onResponse(call: Call<List<Topic>>, response: Response<List<Topic>>) {
                 topic.value = response.body()
             }
 

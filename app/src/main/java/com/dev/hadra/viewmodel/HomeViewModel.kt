@@ -13,8 +13,9 @@ class HomeViewModel(private val categoryRepository: CategoryRepository, private 
 
     fun categoryAll() = categoryRepository.categoryAll()
     fun categoryGetById(id:String) = categoryRepository.categoryGetById(id)
-    fun topicAdd(subject:String,content:String,category:String) = topicRepository.topicAdd(subject, content, category)
+    fun topicAdd(subject:String,content:String,category:String,user: String) = topicRepository.topicAdd(subject, content, category,user)
     fun topicGetById(id:String) = topicRepository.topicGetById(id)
+    fun topicGetByCategory(category: String) = topicRepository.topicGetByCategory(category)
     fun commentAdd(content:String,pcomment:String?,topic:String,user:String) = commentRepository.commentAdd(content, pcomment, topic, user)
     fun commentGetByTopic(topic: String) = commentRepository.commentGetByTopic(topic)
     fun likeAdd(topic:String,comment:String?,user:String,status:Boolean) = likeRepository.likeAdd(topic, comment, user, status)

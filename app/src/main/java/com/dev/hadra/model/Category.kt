@@ -4,7 +4,8 @@ import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
-class Category : Serializable{
+
+class Category : Serializable {
 
     @SerializedName("_id")
     @Expose
@@ -19,6 +20,12 @@ class Category : Serializable{
     @Expose
     val color: String? = null
 
-
-
 }
+
+/*
+data class Category(var id : String = "" ,  var name : String = "" , var color : String = "") : Serializable{
+    override fun toString(): String {
+        return "Category(id='$id', name='$name', color='$color')"
+    }
+
+}*/

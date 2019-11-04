@@ -2,6 +2,7 @@ package com.dev.hadra.adapter
 
 import android.content.Intent
 import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import com.dev.hadra.R
@@ -34,6 +35,7 @@ class CategoryAdapter(private var items: ArrayList<Category>) : RecyclerView.Ada
         var category = items[position]
         var context = holder?.itemView?.context
         holder?.txtName?.text = category.name
+        Log.e("category adapter ",category.color)
         holder?.cns_layout?.setBackgroundColor(Color.parseColor(category.color))
 
         holder?.itemView.setOnClickListener {

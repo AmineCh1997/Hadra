@@ -1,7 +1,12 @@
 package com.dev.hadra.view.activities
 
+import android.graphics.Paint
+import android.graphics.Typeface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.TextWatcher
+import android.text.style.StyleSpan
+import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -10,6 +15,14 @@ import com.dev.hadra.adapter.CommentAdapter
 import com.dev.hadra.adapter.TopicAdapter
 import com.dev.hadra.model.Comment
 import com.dev.hadra.model.Topic
+import kotlinx.android.synthetic.main.activity_comments.*
+import java.time.format.TextStyle
+import android.R.attr.font
+import androidx.core.app.ComponentActivity.ExtraData
+import androidx.core.content.ContextCompat.getSystemService
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+
+
 
 class CommentsActivity : AppCompatActivity() {
 
@@ -22,7 +35,19 @@ class CommentsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_comments)
 
 
+        getSupportActionBar()?.hide()
         recyclerView = findViewById(R.id.activity_comments_recycler_view) as RecyclerView
+
+        activity_comments_et_comment_content.addTextChangedListener {
+            if(activity_comments_et_comment_content.text.toString().isEmpty()){
+
+                activity_comments_tv_post.setTypeface(activity_comments_tv_post.typeface, Typeface.NORMAL)
+            }else{
+                activity_comments_tv_post.setTypeface(activity_comments_tv_post.typeface, Typeface.BOLD)
+            }
+        }
+
+
 
         generateData()
     }

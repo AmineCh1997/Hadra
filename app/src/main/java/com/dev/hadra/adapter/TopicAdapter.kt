@@ -1,10 +1,14 @@
 package com.dev.hadra.adapter
 
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.ColorFilter
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -30,6 +34,26 @@ class TopicAdapter (private var items: ArrayList<Topic>) : RecyclerView.Adapter<
         var topic = items[position]
         var context = holder?.itemView?.context
 
+        //
+        holder.topic_username?.setText(topic.user?.username)
+        holder.topic_createdat?.setText(topic.createdAt.toString())
+        holder.topic_subject?.setText(topic.subject)
+        holder.topic_content?.setText(topic.content)
+        //holder.topic_watchs?.setText(topic.content)
+
+
+
+        //Changing Item Bakcground color
+        Log.e("TEST","${topic.category?.color}")
+        holder?.lnr_layout?.setBackgroundColor(Color.parseColor("#f0f0f0"))
+        holder.topic_username?.setTextColor(Color.parseColor(topic.category?.color.toString()))
+        holder.topic_createdat?.setTextColor(Color.parseColor(topic.category?.color.toString()))
+        holder.topic_subject?.setTextColor(Color.parseColor(topic.category?.color.toString()))
+        holder.topic_content?.setTextColor(Color.parseColor(topic.category?.color.toString()))
+        holder.topic_watchs?.setTextColor(Color.parseColor(topic.category?.color.toString()))
+
+
+
 
         holder?.itemView.setOnClickListener {
             Toast.makeText(context,"Comments section", Toast.LENGTH_LONG ).show()
@@ -53,10 +77,11 @@ class TopicAdapter (private var items: ArrayList<Topic>) : RecyclerView.Adapter<
         var topic_subject : TextView? = null
         var topic_content : TextView? = null
         var topic_watchs : TextView? = null
+        lateinit var lnr_layout: LinearLayout
 
 
-        lateinit var cns_layout: ConstraintLayout
         init {
+            this.lnr_layout = row?.findViewById<LinearLayout>(R.id.item_topic_linear)
             this.topic_username = row?.findViewById<TextView>(R.id.item_topic_tv_topic_user_name)
             this.topic_userimage = row?.findViewById<ImageView>(R.id.item_topic_tv_topic_user_image)
             this.topic_createdat = row?.findViewById<TextView>(R.id.item_topic_tv_topic_date)

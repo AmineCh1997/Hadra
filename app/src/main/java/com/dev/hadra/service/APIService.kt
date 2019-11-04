@@ -34,9 +34,12 @@ interface APIService {
     @GET("topic/{id}")
     fun topicGetById(@Path("id")id:String): Call<Topic>
 
+    @GET("topic/getByCategory/{id}")
+    fun topicGetByCategory(@Path("id")category:String): Call<List<Topic>>
+
     @POST("topic/add")
     @FormUrlEncoded
-    fun topicAdd(@Field("subject")subject:String,@Field("content")content:String,@Field("category")category: String) : Call<Topic>
+    fun topicAdd(@Field("subject")subject:String,@Field("content")content:String,@Field("category")category: String,@Field("user")user: String) : Call<Topic>
 
     @GET("comment/{id}")
     fun commentGetById(@Path("id")id:String): Call<Comment>
