@@ -21,20 +21,27 @@ import android.R.attr.font
 import androidx.core.app.ComponentActivity.ExtraData
 import androidx.core.content.ContextCompat.getSystemService
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-
+import android.nfc.Tag
+import android.util.Log
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import com.dev.hadra.di.InjectorUtils
+import com.dev.hadra.model.Category
+import com.dev.hadra.viewmodel.HomeViewModel
 
 
 class CommentsActivity : AppCompatActivity() {
 
 
     private var recyclerView: RecyclerView? = null
-
-
+    private lateinit var homeViewModel: HomeViewModel
+    private val TAG = "Comment Activity"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_comments)
-
-
+        val homeFactory = InjectorUtils.provideUHomeViewModelFactory()
+        homeViewModel = ViewModelProviders.of(this,homeFactory).get(HomeViewModel::class.java)
+        var topic = getIntent().getSerializableExtra("topic") as String
         getSupportActionBar()?.hide()
         recyclerView = findViewById(R.id.activity_comments_recycler_view) as RecyclerView
 
@@ -47,12 +54,14 @@ class CommentsActivity : AppCompatActivity() {
             }
         }
 
+        activity_comments_tv_post.setOnClickListener {
+            homeViewModel.commentAdd(activity_comments_et_comment_content.text.toString(),null,topic,"5dbc084d3549036e541671ce")
+        }
 
-
-        generateData()
+        generateData(topic)
     }
 
-    private fun generateData() {
+    private fun generateData(topic:String) {
 
         var commentsResult = ArrayList<Comment>()
 
@@ -61,15 +70,20 @@ class CommentsActivity : AppCompatActivity() {
         // [END get_all_users]
 
 
-        for (i in 0..9) {
-            var comment: Comment = Comment()
-            commentsResult.add(comment)
-        }
-        var adapter = CommentAdapter(commentsResult)
-        val layoutManager = LinearLayoutManager(applicationContext)
-        recyclerView?.layoutManager = layoutManager
-        recyclerView?.itemAnimator = DefaultItemAnimator()
-        recyclerView?.adapter = adapter
-        adapter.notifyDataSetChanged()
+      homeViewModel.commentGetByTopic(topic).observe(this, Observer {
+          Log.e(TAG,"after observe")
+          Log.e(TAG,"list size "+it.size)
+          it.forEach {
+              Log.e(TAG,it.content)
+              commentsResult.add(it)
+          }
+          var adapter = CommentAdapter(commentsResult)
+          val layoutManager = LinearLayoutManager(applicationContext)
+          recyclerView?.layoutManager = layoutManager
+          recyclerView?.itemAnimator = DefaultItemAnimator()
+          recyclerView?.adapter = adapter
+          adapter.notifyDataSetChanged()
+      })
+
     }
 }

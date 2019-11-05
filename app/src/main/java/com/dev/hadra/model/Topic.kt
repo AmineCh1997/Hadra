@@ -10,6 +10,10 @@ import com.google.gson.annotations.SerializedName
 
 class Topic : Serializable {
 
+    @SerializedName("_id")
+    @Expose
+    val id: String? = null
+
     @SerializedName("subject")
     @Expose
     val subject: String? = null

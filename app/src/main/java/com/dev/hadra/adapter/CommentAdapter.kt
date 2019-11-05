@@ -27,23 +27,25 @@ class CommentAdapter (private var items: ArrayList<Comment>) : RecyclerView.Adap
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         var comment = items[position]
-
+        holder.comment_username!!.text=comment.user!!.username
+        holder.comment_content!!.text = comment.content
+        holder.comment_createdat!!.text = comment.createdAt
     }
 
 
     class ViewHolder(row: View) : RecyclerView.ViewHolder(row) {
         var comment_username: TextView? = null
         var comment_userimage: ImageView? = null
-        var topic_createdat : TextView? = null
-        var topic_content : TextView? = null
+        var comment_createdat : TextView? = null
+        var comment_content : TextView? = null
 
 
         lateinit var cns_layout: ConstraintLayout
         init {
             this.comment_username = row?.findViewById<TextView>(R.id.item_comment_tv_username)
             this.comment_userimage = row?.findViewById<ImageView>(R.id.item_comment_iv_user)
-            this.topic_createdat = row?.findViewById<TextView>(R.id.item_comment_tv_created_at)
-            this.topic_content = row?.findViewById<TextView>(R.id.item_comment_tv_content)
+            this.comment_createdat = row?.findViewById<TextView>(R.id.item_comment_tv_created_at)
+            this.comment_content = row?.findViewById<TextView>(R.id.item_comment_tv_content)
         }
     }
 }

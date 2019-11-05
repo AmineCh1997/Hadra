@@ -82,10 +82,10 @@ class HomeFragment : Fragment() {
                 val gson = Gson()
                 Log.e(TAG,gson.toJson(it).toString())
             })*/
-        homeViewModel.commentAdd("comment from android",null
+       /* homeViewModel.commentAdd("comment from android",null
             ,"5dbee02b803e3e7f845a9e61","5db5d8d4f8c61d42e4ca57af").observe(this, Observer {
             Log.e(TAG,it.content)
-        })
+        })*/
     }
 
     private fun UserRequests(){

@@ -59,10 +59,8 @@ class TopicAdapter (private var items: ArrayList<Topic>) : RecyclerView.Adapter<
             Toast.makeText(context,"Comments section", Toast.LENGTH_LONG ).show()
             val myIntent = Intent(context, CommentsActivity::class.java)
             //Passing Topic ID
-            //myIntent.putExtra("", con)
+            myIntent.putExtra("topic", topic.id)
             context.startActivity(myIntent)
-
-
 
         }
 

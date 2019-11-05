@@ -2,8 +2,6 @@ package com.dev.hadra.view.activities
 
 import android.app.Dialog
 import android.app.ProgressDialog
-import android.graphics.Color
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -15,19 +13,15 @@ import com.dev.hadra.adapter.TopicAdapter
 import com.dev.hadra.model.Category
 import com.dev.hadra.model.Topic
 import kotlinx.android.synthetic.main.activity_topics.*
-import android.widget.Toast
 import android.widget.Button
 import android.widget.EditText
 import androidx.lifecycle.ViewModelProviders
 import com.dev.hadra.di.InjectorUtils
-import com.dev.hadra.model.User
 import com.dev.hadra.viewmodel.HomeViewModel
-import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import java.util.*
 import kotlin.collections.ArrayList
-
+import androidx.lifecycle.Observer;
 
 class TopicsActivity : AppCompatActivity() {
 
@@ -187,7 +181,15 @@ class TopicsActivity : AppCompatActivity() {
                 content.requestFocus()
                 return@setOnClickListener
             } else {
-                //Adding a topic
+                homeViewModel.topicAdd(subject.text.toString(),content.text.toString(),categorie_id,"5dbc084d3549036e541671ce")
+                    .observe(this,Observer {
+
+                       if(it != null) {
+                           Log.e(TAG,it.subject)
+                           dialog.dismiss()
+                       }
+                    })
+               /* //Adding a topic
                 mProgressBar!!.setMessage("Registering Topic...")
                 mProgressBar!!.show()
                 val newTopic = db.collection("Topic").document()
@@ -221,7 +223,7 @@ class TopicsActivity : AppCompatActivity() {
 
                 dialog.dismiss()
 
-
+*/
             }
 
         }
