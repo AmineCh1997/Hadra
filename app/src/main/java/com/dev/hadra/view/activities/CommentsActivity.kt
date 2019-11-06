@@ -22,7 +22,9 @@ import androidx.core.app.ComponentActivity.ExtraData
 import androidx.core.content.ContextCompat.getSystemService
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import android.nfc.Tag
+import android.text.Editable
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.dev.hadra.di.InjectorUtils
@@ -55,7 +57,13 @@ class CommentsActivity : AppCompatActivity() {
         }
 
         activity_comments_tv_post.setOnClickListener {
+            if(!activity_comments_et_comment_content.text.toString().equals(""))
             homeViewModel.commentAdd(activity_comments_et_comment_content.text.toString(),null,topic,"5dbc084d3549036e541671ce")
+                .observe(this, Observer {
+                    generateData(topic)
+                    activity_comments_et_comment_content.setText("")
+                })
+            else Toast.makeText(this,"Comment section is empty ! ",Toast.LENGTH_LONG).show()
         }
 
         generateData(topic)
